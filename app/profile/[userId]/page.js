@@ -1,5 +1,5 @@
 'use client';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Suspense} from 'react';
 import { useSearchParams } from 'next/navigation'
 import Profile from '@components/Profile';
 import axios from 'axios';
@@ -20,11 +20,13 @@ const UserProfile = ({params}) => {//userId var is in the route
   },[params.userId]);
 
   return (
-    <Profile 
-      name={name}
-      desc={`Welcome to ${name}'s personalized profile page. Explore ${name}'s exceptional prompts and be inspired by the power of their imagination`}
-      data={posts}
-    />
+    <Suspense>
+      <Profile 
+        name={name}
+        desc={`Welcome to ${name}'s personalized profile page. Explore ${name}'s exceptional prompts and be inspired by the power of their imagination`}
+        data={posts}
+      />
+    </Suspense>
   )
 }
 
